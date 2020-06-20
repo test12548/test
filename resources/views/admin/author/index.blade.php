@@ -1,8 +1,6 @@
 @extends('layouts.content')
 @section('content')
-@foreach($authors->Book() as $book)
-test
-@endforeach
+
     <table class="table table-hover">
     <thead>
       <tr>
@@ -18,6 +16,11 @@ test
         <td>{{ $author->firstname }}</td>
         <td>{{ $author->lastname }}</td>
         <td>{{ $author->email }}</td>
+        <td>
+            @foreach($author->Book()->get()->pluck('name', 'created_at') as $date => $name)
+            <li>{{ $name }} - {{ $date }}</li>
+            @endforeach
+        </td>
         <td>
             <li><a href="{{ route('admin.author.edit', $author->id) }}">Edit</a></li>
             <li><a href="{{ route('admin.author.delete', $author->id) }}">Delete</a></li>

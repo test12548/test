@@ -10,9 +10,4 @@ class Book extends Model
 
     protected $guarded = [];
 
-    public function Author()
-    {
-        return $this->belongsTo('App\Author');
-    }
-
 }
